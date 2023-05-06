@@ -19,3 +19,7 @@ app = FastAPI(title = "Mi Maldita Prueba Usando FastAPI")
 @app.get("/")
 async def read_root():
     return {"Hello": "World"}
+
+@app.get("/bye")
+async def bye():
+    return {"message": "Bye World"}
