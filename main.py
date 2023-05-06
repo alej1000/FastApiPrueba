@@ -16,5 +16,6 @@ DATABASE_URL = f'postgresql://{db_username}:{db_password}@{host_server}:{db_serv
 app = FastAPI(title = "Mi Maldita Prueba Usando FastAPI")
 
 
-
-print("Hello World! This is a test for FastAPI")
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
