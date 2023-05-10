@@ -1,16 +1,25 @@
-from fastapi import FastAPI, Request
-from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
-from starlette.exceptions import HTTPException
-from fastapi.staticfiles import StaticFiles
-from endpoints import records, paginasHTML
-app = FastAPI()
+from fastapi import FastAPI 
+from fastapi.middleware.cors import CORSMiddleware
+import os
+import urllib
 
-# Rutas para puntos
-app.include_router(records.router)
 
-# Rutas para paginas HTML
-app.include_router(paginasHTML.router)
+host_server = os.environ.get('host_server','localhost')
+db_server_port = urllib.parse.quote_plus(str(os.environ.get('db_server_port','5432')))
+database_name = os.environ.get('database_name','Records')
+db_username = urllib.parse.quote_plus(str(os.environ.get('db_username','postgres')))
+db_password = urllib.parse.quote_plus(str(os.environ.get('db_password','C@ndyCrosh')))
+ssl_mode = urllib.parse.quote_plus(str(os.environ.get('ssl_mode','prefer')))
 
-#Mount the static files directory at "/static"
-app.mount("/static", StaticFiles(directory="FRONT/static"), name="static")
+DATABASE_URL = f'postgresql://{db_username}:{db_password}@{host_server}:{db_server_port}/{database_name}?sslmode={ssl_mode}'
+
+app = FastAPI(title = "Mi Maldita Prueba Usando FastAPI")
+
+
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
+
+@app.get("/bye")
+async def bye():
+    return {"message": "Bye World"}
