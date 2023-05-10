@@ -175,9 +175,8 @@ async def get_records():
     """
     Este endpoint devuelve todos los records
     """
-    return {"Coño": "Joder"}
-    #records = obtener_records()
-    #return respuesta_exitosa(records)
+    records = obtener_records()
+    return respuesta_exitosa(records)
 
 # @router.get("/records/{id}")
 # async def get_record(id: int):
