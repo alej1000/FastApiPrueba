@@ -159,6 +159,15 @@ def insertar_datos_conexion(conn,sql, params=None):
 #endregion
 
 
+def obtener_records():
+    query = "SELECT * FROM scores ORDER BY fecha DESC LIMIT 10"
+    records = db.realizar_consulta(query)
+    return records
+
+def insertar_record(data: dict):
+    nombre_tabla = "scores"
+    record = db.realizar_insercion(nombre_tabla, data)
+    return record
 
 # a partir de aquí se definen las rutas
 
@@ -176,7 +185,7 @@ async def get_records():
     """
     Este endpoint devuelve todos los records
     """
-    return {"Coño":"Joder"}
+    return {"Coño": "Joder"}
     #records = obtener_records()
     #return respuesta_exitosa(records)
 
@@ -203,13 +212,3 @@ async def post_record(request: Request):
     record = insertar_record(data)
     return respuesta_exitosa(record)
 
-
-def obtener_records():
-    query = "SELECT * FROM scores ORDER BY fecha DESC LIMIT 10"
-    records = db.realizar_consulta(query)
-    return records
-
-def insertar_record(data: dict):
-    nombre_tabla = "scores"
-    record = db.realizar_insercion(nombre_tabla, data)
-    return record
