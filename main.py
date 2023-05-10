@@ -2,8 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Request
 from fastapi import HTTPException
-import json
-import db
+
 import os
 import urllib
 
@@ -38,26 +37,5 @@ async def get_records():
     #records = obtener_records()
     #return respuesta_exitosa(records)
 
-# @router.get("/records/{id}")
-# async def get_record(id: int):
-#     """
-#     Este endpoint devuelve un record en particular
-#     """
-#     try:
-#         record = logica.obtener_record(id)
-#         if len(record) == 0:
-#             raise logica.CustomException(message="No se encontró el record con id " + str(id), code=404)
-#         return logica.respuesta_exitosa(record)
-#     except logica.CustomException as e:
-#         raise HTTPException(status_code=e.code, detail=e.message)
 
-@app.post("/records")
-async def post_record(request: Request):
-    """
-    Crear un nuevo record con los datos recibidos en el body
-    """
-    #data es un diccionario con los datos que se reciben en el form data
-    data = await request.json()
-    record = insertar_record(data)
-    return respuesta_exitosa(record)
 
