@@ -204,10 +204,10 @@ async def post_record(request: Request):
 
 def obtener_records():
     query = "SELECT * FROM scores ORDER BY fecha DESC LIMIT 10"
-    records = db.realizar_consulta(query)
+    records = realizar_consulta(query)
     return records
 
 def insertar_record(data: dict):
     nombre_tabla = "scores"
-    record = db.realizar_insercion(nombre_tabla, data)
+    record = realizar_insercion(nombre_tabla, data)
     return record
