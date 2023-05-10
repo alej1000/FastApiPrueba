@@ -35,12 +35,13 @@ def respuesta_fallida(mensaje, code=400):
 
 #region funciones de la base de datos
 def get_connection():
-    conn = psycopg2.connect(
-        dbname='aotdlhvi',
-        user='aotdlhvi',
-        password='yJMYPFXps-4hLoQ2KO5iEzXs7o-bJxyJ',
-        host='trumpet.db.elephantsql.com',
-        port='5432')
+    conn = psycopg2.connect(database_name,db_username,db_password,host_server,db_server_port
+        # dbname='aotdlhvi',
+        # user='aotdlhvi',
+        # password='yJMYPFXps-4hLoQ2KO5iEzXs7o-bJxyJ',
+        # host='trumpet.db.elephantsql.com',
+        # port='5432'
+        )
     if conn:
         print('Conectado a la base de datos')
     else:
